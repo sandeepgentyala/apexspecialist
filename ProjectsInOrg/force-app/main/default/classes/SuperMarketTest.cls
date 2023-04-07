@@ -16,18 +16,41 @@ for(integer i=1;i<=NO_OF_PRODUCTS;i++)
     
 }
 
-
+@isTest
 static void runTest()
 {
     SuperMarket sMarket = new SuperMarket();
+    
     Map<String,Integer> billedItems = 
     new Map<String,Integer>();
 		billedItems.put('PRD0010', 5);
 		billedItems.put('PRD001', 15);
 		billedItems.put('PRD004', 5);
-		billedItems.put('PRD0060', 500);
-    sMarket.billing(billedItems);
-
+		billedItems.put('PRD006', 5);
+	sMarket.billing(billedItems);
+    
+    system.assertEquals(132.00, sMarket.discounted_Bill, 'Erro: Values did not match.');
+    
+  /*  Map<String,Integer> billedItems1 = 
+    new Map<String,Integer>();
+		billedItems1.put('PRD0010', 5);
+     sMarket.billing(billedItems1);
+    
+    Map<String,Integer> billedItems2 = 
+     new Map<String,Integer>();
+		billedItems2.put('PRD00100', 50);
+     sMarket.billing(billedItems2);
+    
+    Map<String,Integer> billedItems3 = 
+     new Map<String,Integer>();
+		billedItems3.put('PRD004', 25);
+     sMarket.billing(billedItems3);*/
+   
+	//sMarket.display('PRD001200');
+    sMarket.display('PRD0010');
+    sMarket.reOrderProducts();
+    
+    sMarket.updateStock(25, 'PRD001');
    // system.assertEquals();
 }
 

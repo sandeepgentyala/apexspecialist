@@ -37,7 +37,7 @@ public class SuperMarket {
     public void updateStock(Integer stk_Quantity, String prcode)
     {
         // system.debug('Stock->'+stock);
-        if(products.get(prcode) != null && products.get(prcode).stock<=0){
+        if(products.get(prcode) != null && products.get(prcode).stock<=20){
             products.get(prcode).stock = products.get(prcode).stock+stk_Quantity;
             system.debug('Your stock for product '+prcode+' is updated to '+stk_Quantity);
         }
@@ -69,18 +69,5 @@ public class SuperMarket {
             }
         }
     }
-       /* if(products.containsKey(p_Code)){
-            if(products.get(p_Code).stock<10){
-                //   discounted_Bill = discounted_Bill + (total_Bill - total_Bill*(products.get(p_Code).discount/100));
-                products.get(p_Code).stock = products.get(p_Code).stock + quantity;
-                system.debug('Stock for '+p_Code+' has been updated to '+quantity);
-            }
-            else
-                system.debug('Enough stock for product '+p_Code+ ' is available ');     
-            // system.debug(display(p_Code)+ ' - Purchase Quantity: '+ quantity+' - Price : '+products.get(p_Code).price);
-        }
-        else
-            system.debug('Product '+p_Code+' is not available with us');
-        
-    }*/
+       
 }
