@@ -1,39 +1,6 @@
-trigger OpportunityTrigger on Opportunity (after insert) {
+trigger OpportunityTrigger on Opportunity (before insert, after insert) {
     
-    Set<id> accSet = new Set<id>();
-    List<Account> accUpdateList = new List<Account>();
-    List<Opportunity> oppsListFromTrigr = trigger.newMap.values();
-    for(ID oppID: trigger.newMap.keyset())
-    {
-     //  system.debug('-->'+ trigger.newMap.get(oppId).AccountId);
-       accSet.add(trigger.newMap.get(oppId).AccountId);
-    }
-    
-   Decimal highAmount = 0.0;
-
-    Map<ID, Account> oppAccountList = new Map<ID,Account>([Select ID, Highest_Opportunity__c , 
-                                                           (select Amount from Opportunities) from Account Where ID in : accSet]);
-
-    for(Id accID:oppAccountList.keyset())
-    {
-        for(Opportunity opp:oppAccountList.get(accID).Opportunities)
-        {
-            if(opp.amount>highAmount)
-                highAmount = opp.amount;
-        }
-
-        if(highAmount != 0.0)
-        {
-            oppAccountList.get(accID).Highest_Opportunity__c = highAmount;
-        }
-        else{
-            oppAccountList.get(accID).Highest_Opportunity__c = highAmount;
-        }
-            
-        accUpdateList.add( oppAccountList.get(accID));
-    }
-
-    update accUpdateList; 
+    OpportunityTriggerHandler.run();
 
   /*
     Set<Id> sId = new Set<Id>();
