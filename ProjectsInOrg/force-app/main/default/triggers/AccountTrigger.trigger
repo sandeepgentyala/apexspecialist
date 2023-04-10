@@ -1,11 +1,8 @@
-trigger AccountTrigger on Account (before insert) {
-    
-    for(Account ac:trigger.new)
-    {
-        if(ac.rating == 'Hot')
-        {
-            ac.AnnualRevenue = 20000;
-        }
-    }
+trigger AccountTrigger on Account (before insert, after insert, before update, after update, 
+                                   before delete, after delete, after undelete)
+{
+
+        AccountTriggerHandler.run();
+
 
 }
