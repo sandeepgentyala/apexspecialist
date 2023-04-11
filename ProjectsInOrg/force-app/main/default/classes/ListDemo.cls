@@ -1,6 +1,6 @@
 public class ListDemo {
     
-    public List<Integer> obj_listDemo;
+    public List<Integer> objListDemo;
     public final integer MULTIPLIER = 2;
     public final integer RANDOM_NUMBER_HELPER_1 = 100;
     public final integer RANDOM_NUMBER_HELPER_2 = 200;
@@ -8,36 +8,38 @@ public class ListDemo {
 //Contructor to initialize the List with random positive & negative numbers
     public ListDemo(integer lSize)
     {
-        obj_listDemo = new List<Integer>();
+        objListDemo = new List<Integer>();
         for(integer i=0;i<lSize;i++)
         {
-            integer rand_Numb = Integer.valueOf(math.random()*RANDOM_NUMBER_HELPER_1);
-            if(rand_Numb>80)
-                obj_listDemo.add(rand_Numb-RANDOM_NUMBER_HELPER_2);
+            integer randNumb = Integer.valueOf(math.random()*RANDOM_NUMBER_HELPER_1);
+            if(randNumb>80)
+                objListDemo.add(randNumb-RANDOM_NUMBER_HELPER_2);
             else
-            	obj_listDemo.add(rand_Numb);
+                objListDemo.add(randNumb);
         }
     }
    
     // Find the biggest from the list
     public void findBiggest()
     {
-        integer biggest = 0;
-        for(integer x: obj_listDemo)
+        objListDemo.sort();
+        integer biggest  = objListDemo[objListDemo.size()-1];
+
+       /* for(integer x: obj_listDemo)
         {
             if(x>biggest)
                 biggest = x;
-        }
+        }*/
         system.debug('Biggest number from the list is: '+biggest);
     }
     
 // Find the sum of odd & even numbers
-    public void findSum_odd_Even()
+    public void findSumOddEven()
     {
         Integer sum_Even=0, countEven=0;
         Integer sum_Odd=0, countOdd = 0;
         
-        for(integer i:obj_listDemo)
+        for(integer i:objListDemo)
         {
             if(math.mod(i,MULTIPLIER)==0)
             {
@@ -55,13 +57,13 @@ public class ListDemo {
     }
     
     // reverse the items in the list using the generic for loop and access items using index
-    public void reversed_List()
+    public void reversedList()
     {
         List<Integer> newList = new List<Integer>();
         
-        for(integer n=obj_listDemo.size()-1;n>=0;n--)
+        for(integer n=objListDemo.size()-1;n>=0;n--)
         {
-            newList.add(obj_listDemo[n]);
+            newList.add(objListDemo[n]);
         }
         
         System.debug('Reversed List-->'+newList);
@@ -71,7 +73,7 @@ public class ListDemo {
     {
       
         integer countNegtives=0;
-        for(integer n:obj_listDemo)
+        for(integer n:objListDemo)
         {
             if(n<0)
             {

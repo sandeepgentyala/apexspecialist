@@ -2,7 +2,7 @@ trigger AccountTrigger on Account (before insert, after insert, before update, a
                                    before delete, after delete, after undelete)
 {
 
-        AccountTriggerHandler.run();
+        TriggerDispatcher.run(new AccountTriggerHandler());
 
 
 }
