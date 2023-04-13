@@ -1,26 +1,20 @@
-public with sharing class OpportunityTriggerHandler {
+public with sharing class OpportunityTriggerHandler implements TriggerInterface{
 
-public static void run()
-{
-    Switch on Trigger.OperationType
-    {
-        When BEFORE_INSERT
-        {
-            runBeforeInsert();
-        }
-        When AFTER_INSERT
-        {
-            runAfterInsert();
-        }
-    }
-}
 
-private static void runBeforeInsert()
+
+public void beforeUpdate(Map<id, sObject> newTriggerMap, Map<id, sObject> oldTriggerMap){}
+public void afterUpdate(Map<id, sObject> newTriigerMap, Map<id, sObject> oldTriggerMap){}
+
+public void beforeDelete(List<sObject> oldTriggerList, Map<id, sObject> oldTriggerMap){}
+public void afterDelete(List<sObject> oldTriggerList, Map<id, sObject> oldTriggerMap){}
+
+public void afterUnDelete(List<sObject> newTriggerList, Map<id, sObject> newTriggerMap){}
+public void beforeInsert(List<sObject> newTriggerList)
 {
     system.debug('Inside Before Insert');
 }
 
-private static void runAfterInsert()
+public void afterInsert(List<sObject> newTriggerList, Map<id, sObject> newTriggerMap)
 {
     Set<Id> sId = new Set<Id>();
    List<Opportunity> triggerOpp = (List<Opportunity>)Trigger.new;
