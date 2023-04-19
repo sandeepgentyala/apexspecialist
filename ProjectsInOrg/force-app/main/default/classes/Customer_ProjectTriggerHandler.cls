@@ -5,7 +5,8 @@ public with sharing class Customer_ProjectTriggerHandler implements TriggerInter
        List<Opportunity> oppList = new List<Opportunity>();
         for(ID id: newTriggerMap.keyset())
         {
-            if(((Customer_Project__c)newTriggerMap.get(id)).Opportunity_Name__c != null && ((Customer_Project__c)newTriggerMap.get(id)).Status__c == 'Active')
+            if(((Customer_Project__c)newTriggerMap.get(id)).Opportunity_Name__c != null && 
+                        ((Customer_Project__c)newTriggerMap.get(id)).Status__c == 'Active')
             {
                 Opportunity opp = new Opportunity();
                 opp.id =((Customer_Project__c)newTriggerMap.get(id)).Opportunity_Name__c;
