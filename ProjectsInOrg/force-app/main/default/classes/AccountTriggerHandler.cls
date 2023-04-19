@@ -58,13 +58,14 @@ public with sharing class AccountTriggerHandler implements TriggerInterface{
    
     public void afterUpdate(Map<id, sObject> newTriggerMap, Map<id, sObject> oldTriggerMap){
 
+     if(!system.isFuture()){
         Set<id> accIdsfromUpdate = newTriggerMap.keyset();
         List<Contact> contactsToUpdate = new List<Contact>();
         List<Contact> contactsToDelete = new List<Contact>();
         system.debug('--'+newTriggerMap+'--'+oldTriggerMap);
         //List<AggregateResult> acContAgr = [Select AccountId, count(id) TotalContacts from Contact 
         //                                    where AccountId in : accIdsfromUpdate group by AccountId];
-        
+       // system.debug()
         Map<id, Account> contactsFromAccount = new Map<id, Account>([Select id, name, (select id, AccountId from Contacts) from 
                                                                        Account where id in : accIdsfromUpdate]);
         system.debug('***'+contactsFromAccount);
@@ -102,6 +103,10 @@ public with sharing class AccountTriggerHandler implements TriggerInterface{
        {
         delete contactsToDelete;
        }
+    }
+    else{
+        system.debug('is it from a Future method? -->'+system.isfuture());
+    }
     }
 
     public void beforeUpdate(Map<id, sObject> newTriggerMap, Map<id, sObject> oldTriggerMap){}
