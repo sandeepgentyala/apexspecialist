@@ -1,0 +1,19 @@
+<template >
+    <lightning-card title="Calculator" class="background1" >
+        <lightning-input value={input1} name="input1" label="Input 1" onchange={handleChange} class="slds-input"></lightning-input>
+        <lightning-input value={input2} name="input2" label="Input 2" onchange={handleChange} class="slds-input"></lightning-input>  
+    </lightning-card>
+    <div>
+        <lightning-button label="Add" name="add" onclick={handleClick} class="slds-m-left_x-small">
+        </lightning-button>
+        <lightning-button variant="brand" label="Subtract" name="subtract" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button label="Multiply" name="multiply"  onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button label="Devide" name="devide" variant="brand" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+    </div>
+    <template if:true={isResult}>
+    <div class="slds-m-around-left_x-small">
+        The result is {result}
+    </div>
+    </template>
+    
+</template>
